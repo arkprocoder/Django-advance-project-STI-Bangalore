@@ -10,7 +10,8 @@
   
       <div class="col-md-4">
         <h1 class="text-center text-success">login</h1>
-        <form>
+        {% include "messages.html" %}
+        <form action="/auth/login/" method="post">{% csrf_token %}
           <br />
          
           <label for="email">Email</label>
