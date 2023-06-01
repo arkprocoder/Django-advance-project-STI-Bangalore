@@ -12,3 +12,7 @@ python manage.py createsuperuser
 
 # to run the project
 python manage.py runserver
+
+#admin credentails
+username: anees
+password : anees
