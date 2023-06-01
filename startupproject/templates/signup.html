@@ -1,6 +1,7 @@
 {% extends 'base.html' %} 
 {% block title %} Signup {% endblock title %} 
 {% block body %}
+{% load socialaccount %}
 
 <div class="container mt-3">
   <div class="row">
@@ -8,6 +9,12 @@
 
     <div class="col-md-4">
       <h1 class="text-center">Signup</h1>
+      <hr>
+
+      <a  href="{% provider_login_url 'google' %}" class="alert-link text-center bg-light">Clike Here</a>Login with <i class="fa-brands fa-google"></i>
+
+
+
       {% include "messages.html" %}
       <form action="/auth/signup/" method="post">{% csrf_token %}
         <br />
@@ -45,6 +52,10 @@
             required
             
           />
+
+          <input type="checkbox"  onclick="showPassword()"><span id="sp">Show Password</span><i class="fa-solid fa-eye"></i>
+<br>
+          <small>Password must include atleast [1-9][a-z][A-z][_$@]& 5 characters</small>
   
         </div>
    
@@ -76,3 +87,25 @@
 </div>
 
 {% endblock body %}
+{% block script %} 
+<script>
+
+  console.log("working")
+
+
+  function showPassword(){
+    var x = document.getElementById("pass1");
+    var z = document.getElementById("pass2");
+    var y = document.getElementById("sp");
+    if (x.type === "password" && z.type==="password") {
+      x.type = "text";
+      z.type="text";
+      y.innerText="Hide Password";
+    } else {
+      x.type = "password";
+      z.type="password";
+      y.innerText="Show Password";
+    }
+  }
+</script>
+{% endblock script %}

@@ -3,6 +3,7 @@ from django.contrib import messages
 import re
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+
 # Create your views here.
 def signup(request):
     flag=0
@@ -15,8 +16,8 @@ def signup(request):
         if password!=confirm_password:
             messages.warning(request,"Password is Not Matching")
             return redirect('/auth/signup/') 
-        if len(password)<=8:
-            messages.warning(request,"Password must be atleast 8 character")
+        if len(password)<=5:
+            messages.warning(request,"Password must be atleast 5 character")
             return redirect('/auth/signup/') 
         elif not re.search("[a-z]", password):
             flag = -1

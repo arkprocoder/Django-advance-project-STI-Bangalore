@@ -37,10 +37,46 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    # add his below sites also
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'startupapp',
-    'authapp'
+    'authapp',
+
+# add bellow apps to login through google account
+    
+    'allauth',   
+    'allauth.account',  
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
+# for ckeditor
+    'ckeditor',
 ]
+
+# add below lines for backend
+
+AUTHENTICATION_BACKENDS = ( 'django.contrib.auth.backends.ModelBackend', 'allauth.account.auth_backends.AuthenticationBackend', )
+
+
+SITE_ID = 2
+LOGIN_REDIRECT_URL = '/'
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+# till here you have to add
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -125,6 +161,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,"media")
+
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -134,3 +177,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS={
     messages.ERROR:'danger'
 }
+
+# pip install django-allauth

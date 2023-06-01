@@ -1,0 +1,14 @@
+pip install django
+pip install django-allauth
+pip install Pillow
+pip install django-ckeditor
+
+# for migrations
+python manage.py makemigrations
+python manage.py migrate
+
+# for creating the superuser
+python manage.py createsuperuser
+
+# to run the project
+python manage.py runserver
