@@ -58,3 +58,14 @@ class Payments(models.Model):
     status= models.CharField(max_length=20,default="Unpaid")
     def __int__(self):
         return self.name
+    
+
+class Attendace(models.Model):
+    name=models.CharField(max_length=50)
+    email=models.EmailField()
+    date=models.CharField(max_length=50)
+    logintime=models.CharField(max_length=50)
+    logouttime=models.CharField(max_length=50)
+    approved=models.BooleanField(default=False)
+    def __str__(self):
+        return self.email

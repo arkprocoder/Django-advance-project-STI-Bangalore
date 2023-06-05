@@ -6,8 +6,91 @@
 active
 {% endblock home %}
 {% block body %}
-  <div class="container">
+{% load static %}
+
     {% include "messages.html" %}
-    <h1>Welcome to Home Page</h1>
-  </div>  
+
+
+<div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/one.jpg' %}" class="d-block w-100" height="550px" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Startup company</h5>
+        <p>We Provide Best Training</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/two.jpg' %}" class="d-block w-100" alt="..."  height="550px">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Autentic Training</h5>
+        <p>Located at Bangalore.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/twoo.jpg' %}" class="d-block w-100" alt="..."  height="550px">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Internships Available</h5>
+        <p>Paid Internships</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="container mt-3">
+
+
+  <div class="card mb-3" >
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'images/small1.jpg' %}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Startup Training Institute</h5>
+          <p class="card-text">A Startup Training Institute is an educational institution dedicated to providing comprehensive training and support to aspiring entrepreneurs and startup founders. These institutes play a crucial role in equipping individuals with the necessary knowledge, skills, and mindset required to successfully navigate the challenging world of startups.
+     
+          </p>
+          <p>
+            Startup Training Institutes offer a wide range of programs and courses tailored to address various aspects of starting and managing a business. These may include entrepreneurship fundamentals, business planning, market research, financial management, marketing and sales strategies, product development, and investor pitching. The curriculum is designed to provide a holistic understanding of the startup ecosystem and to empower participants with the tools and resources needed to launch and grow their ventures.
+          </p>
+          <p> 
+            One of the key advantages of enrolling in a Startup Training Institute is the opportunity to learn from experienced entrepreneurs and industry experts. These institutes often collaborate with successful startups, venture capitalists, and business leaders who share their insights, experiences, and best practices with the participants. The networking opportunities within such institutes also facilitate connections with like-minded individuals, potential co-founders, mentors, and investors.
+          </p>
+          <p>
+            Startup Training Institutes often adopt a practical, hands-on approach to learning, encouraging participants to work on real-world projects, case studies, and simulations. This experiential learning approach enables participants to develop critical thinking, problem-solving, and decision-making skills that are essential for entrepreneurial success.
+          </p>
+          <p>
+            In conclusion, a Startup Training Institute serves as a launchpad for aspiring entrepreneurs, providing them with the knowledge, skills, resources, and network necessary to transform their innovative ideas into successful ventures.
+          </p>
+            
+            
+       
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
 {% endblock body %}

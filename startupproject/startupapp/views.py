@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from authapp.models import Contact
 from django.contrib import messages
-from startupapp.models import Courses,Register,Payments
+from startupapp.models import Courses,Register,Payments,Attendace
 # Create your views here.
 def index(request):
     return render(request,"index.html")
@@ -88,7 +88,7 @@ def candidateprofile(request):
         messages.warning(request,"Please Login & View Your Profile")
         return redirect("/auth/login/")   
     currentuser=request.user.username
-    print(currentuser)
+    # print(currentuser)
     details=Register.objects.filter(email=currentuser)
     payment=Payments.objects.all()
     paymentstatus=""
@@ -108,8 +108,72 @@ def candidateprofile(request):
     # print(details)
     paymentstats={"paymentstatus":paymentstatus,"amount":amount,"balance":balance}
 
-    # attendanceStats=Attendace.objects.filter(email=currentuser)   
-    # context={"details":details,"status":paymentstats,"attendanceStats":attendanceStats}
-    context={"details":details,"status":paymentstats}
-    print(context)
+    attendanceStats=Attendace.objects.filter(email=currentuser)   
+    context={"details":details,"status":paymentstats,"attendanceStats":attendanceStats}
+
     return render(request,"profile.html",context)
+
+
+# for updating the candidate details
+
+
+def candidateupdate(request,id):
+    data=Register.objects.get(candidateId=id) 
+    courses=Courses.objects.all()
+    context={"data":data,"courses":courses}
+    if request.method=="POST":
+        fname=request.POST.get('fname')
+        lname=request.POST.get('lname')
+        fatherName=request.POST.get('fatherName')
+        phone=request.POST.get('phone')
+        alternateNumber=request.POST.get('alternateNumber')
+        college=request.POST.get('college')
+        addr=request.POST.get('addr')
+        landmark=request.POST.get('landmark')
+        street=request.POST.get('street')
+        pcode=request.POST.get('pcode')
+        city=request.POST.get('city')
+        companyname=request.POST.get('companyname')
+        Designation=request.POST.get('Designation')
+        Qualification=request.POST.get('Qualification')
+        scourse=request.POST.get('scourse')
+       
+        edit=Register.objects.get(candidateId=id)
+        edit.firstName=fname
+        edit.lastName=lname
+        edit.fatherName=fatherName
+        edit.phoneNumber=phone
+        edit.alternateNumber=alternateNumber
+        edit.collegeName=college
+        edit.address=addr
+        edit.landmark=landmark
+        edit.street=street
+        edit.city=city
+        edit.pincode=pcode
+        edit.companyName=companyname
+        edit.designation=Designation
+        edit.qualification=Qualification
+        edit.Course=scourse
+        edit.save()
+        messages.info(request,"Data Updates Successfully...")
+        return redirect("/candidateprofile/")
+
+    return render(request,"updatecandidate.html",context)
+
+
+
+def attendance(request):
+    if not request.user.is_authenticated:
+        messages.warning(request,"Please Login & Apply Attendance")
+        return redirect("/auth/login/")
+    if request.method=="POST":
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        date=request.POST.get('date')
+        logintime=request.POST.get('logintime')
+        logouttime=request.POST.get('logouttime')
+        query=Attendace(name=name,email=email,date=date,logintime=logintime,logouttime=logouttime)
+        query.save()
+        messages.success(request,"Applied Successfully wait for the approval")
+        return redirect("/candidateprofile/")
+    return render(request,"attendance.html")
