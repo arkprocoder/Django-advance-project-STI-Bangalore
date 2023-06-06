@@ -177,3 +177,16 @@ def attendance(request):
         messages.success(request,"Applied Successfully wait for the approval")
         return redirect("/candidateprofile/")
     return render(request,"attendance.html")
+
+
+
+def search(request):
+    query=request.GET['search']
+    if len(query)>100:
+        allPosts=Courses.objects.none()
+    else:
+        allPosts=Courses.objects.filter(courseName__icontains=query)
+    if allPosts.count()==0:
+        messages.warning(request,"No Search Results")
+    params={'allPosts':allPosts,'query':query}
+    return render(request,"search.html",params)

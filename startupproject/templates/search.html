@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+    Search    
+{% endblock title %} 
+{% block home %}
+active
+{% endblock home %}
+{% block body %}
+
+
+<div class="container mt-2">
+    <h1 class="text-center">Search results</h1>
+    {% include "messages.html" %}
+
+
+    {% if allPosts|length < 1%}
+    Your Search <b>{{query}} did not match</b>
+    <ul>
+    <li>Make Sure You have Spelled Correct</li>
+    </ul>
+    {% endif %}
+
+
+    <div class="row">
+        
+    
+        {% for c in allPosts %}
+        <div class="col-md-3">
+        <div class="card ml-3">
+            <img src="{{c.image.url}}" id="card-img" class="card-img-top p-3"  height="150px" alt="not found">
+            <div class="card-body">
+              <h3 class="card-title">{{c.courseName}} </h3>
+              <p class="card-text"> <b>Fee {{c.courseFee}}</b> Rs | <b>Duration {{c.courseDuration}} Months</b></p>
+              <h4> {{c.stars}}<i class="fa-regular fa-star"></i></h4>
+                     
+              <a href="/course/{{c.courseName}}/" class="btn btn-primary">know More</a>
+              <a href="/enroll/" class="btn btn-outline-dark">Enroll</a>
+            </div>
+          </div>
+        </div>
+    
+        {% endfor %}  
+    
+    </div> 
+    
+    </div>
+    
+
+{% endblock body %}
