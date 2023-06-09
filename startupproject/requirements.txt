@@ -17,3 +17,12 @@ python manage.py runserver
 #admin credentails
 username: anees
 password : anees
+
+
+# creating a project
+djang-admin startproject project_name
+cd project_name
+# creating a application
+python manage.py startapp app_name
+python manage.py migrate
+python manage.py runserver

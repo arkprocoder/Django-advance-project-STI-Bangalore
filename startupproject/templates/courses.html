@@ -17,11 +17,14 @@ active
         {% for c in courses %}
         <div class="col-md-3">
         <div class="card ml-3">
-            <img src="{{c.image.url}}" id="card-img" class="card-img-top p-3"  height="150px" alt="not found">
+            <img src="{{c.image.url}}" id="card-img" class="card-img-top p-3" alt="not found">
             <div class="card-body">
               <h3 class="card-title">{{c.courseName}} </h3>
               <p class="card-text"> <b>Fee {{c.courseFee}}</b> Rs | <b>Duration {{c.courseDuration}} Months</b></p>
-              <h4> {{c.stars}}<i class="fa-regular fa-star"></i></h4>
+
+              
+
+              <p> {{c.stars}}<i class="fa-regular fa-star"></i></p>
                      
               <a href="/course/{{c.courseName}}/" class="btn btn-primary">know More</a>
               <a href="/enroll/" class="btn btn-outline-dark">Enroll</a>
